@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>To do list by kapil</title>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		body{
+            font-family:sans-serif;
+            background-color: aquamarine;
+		}
+		.main{
+		     margin-top: 50px;
+             background-color: #fff;
+             border-radius: 15px;
+             margin-bottom: auto;
+             padding: 30px;
+             font-weight: 300;
+             border: 1px solid black;
+             width:50%;
+             margin-left: 25%;
+             //text-align: center;
+             //opacity: 0.8;
+		}
+		h1{
+			//margin: 0;
+		}
+		p{
+            color: gray;
+            font-style: italic;
+		}
+		#list{
+			cursor: default;
+			font-family: cursive;
+			color: darkgreen;
+			font-weight: bold;
+		}
+		.completed{
+			text-decoration: line-through;
+			color:indianred;
+		}
+		ol li:nth-child(even) {
+        background: rgba(0, 255, 191,0.1);
+        }
+		button{
+			margin-right: 10px;
+		    margin-left: 10px;
+		    padding: 3px 9px;
+		    cursor: pointer;
+		    //border: none;
+		    background-color: rgba(0, 255, 191,0.9);
+		    border-radius: 6px;
+		    //border: 1px solid rgb(0, 255, 191);
+		}
+		button:hover{
+			background-color: rgba(0, 255, 191,0.5);
+		}
+       #text{
+           width: 350px;
+           //border: 1px solid black;
+           font-family: cursive;
+           font-weight: bold;
+       }
+       #text:focus{
+       	border: 3px solid rgba(0, 255, 191,0.9);
+       	outline: none;
+       }
+       #add{
+       	margin-left: 10px;
+       }
+       @media only screen and (max-width: 600px) {
+        .main{
+		     margin-top: 50px;
+             background-color: #fff;
+             border-radius: 15px;
+             margin-bottom: auto;
+             padding: 30px;
+             font-weight: 300;
+             border: 1px solid black;
+             width:90%;
+             margin-left: 5%;
+             //text-align: center;
+             //opacity: 0.8;
+		     }
+        #text{
+           width:70%;
+           //border: 1px solid black;
+           font-family: cursive;
+           font-weight: bold;
+            }
+          button{
+			margin-right: 2px;
+		    margin-left: 2px;
+		    padding: 3px 9px;
+		    cursor: pointer;
+		    //border: none;
+		    background-color: rgba(0, 255, 191,0.9);
+		    border-radius: 6px;
+		    //border: 1px solid rgb(0, 255, 191);
+		}
+		}
+
+	</style>
+</head>
+<body>
+	<div class="main">
+	<h1>My to-do list</h1>
+	<p>Double-click an item to mark it complete</p>
+	<input type="text" name="text" id="text" onfocus="this.value=''">
+	<button id="add" onclick="addl()">add</button>
+	<ol id="list">
+	</ol>
+	<br>
+	<button id="b1" onclick="clearl()">Clear Completed</button>
+	<button id="b2" onclick="emptyl()">Empty List</button>
+	</div>
+	<script>
+		var lv=document.getElementById("list");
+		function addl()
+		{
+			var fv=document.getElementById("text").value;
+			var ele = document.createElement("li");
+  			var node = document.createTextNode(fv);
+  			ele.appendChild(node);
+  			lv.appendChild(ele);
+  			ele.addEventListener("dblclick",toggle);
+  		}
+  		function toggle()
+  		{
+             if(this.classList.contains("completed"))
+             {
+             	this.classList.remove("completed");
+             }
+             else{
+             	this.classList.add("completed");
+             }
+        }
+        function clearl()
+        {
+        	var cis = document.getElementsByClassName("completed");
+        	while(cis.length>0)
+        	{
+                  cis.item(0).remove();
+        	}
+        }
+        function emptyl()
+        {
+        	var all= lv.children;
+        	while(all.length>0)
+        	{
+        		all.item(0).remove();
+        	}
+        }
+	</script>
+</body>
+</html>
